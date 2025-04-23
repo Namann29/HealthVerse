@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracking - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Google Sign-In API -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="255243209956-9l5quaumslup4gu79n25lk7dv6vr6qgm.apps.googleusercontent.com">
+    <meta name="google-signin-hosted_domain" content="health-verse.vercel.app">
+</head>
+<body>
+    <!-- Navigation bar will be loaded dynamically -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <section class="fitness-dashboard">
+            <h1>Your Fitness Activity</h1>
+            
+            <div class="fitness-stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-shoe-prints"></i>
+                    <h3>Steps Today</h3>
+                    <p id="steps-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Calories Burned</h3>
+                    <p id="calories-burned">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-road"></i>
+                    <h3>Distance (km)</h3>
+                    <p id="distance-walked">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Active Minutes</h3>
+                    <p id="active-minutes">0</p>
+                </div>
+            </div>
+
+            <div class="sync-section">
+                <button id="sync-fitness" class="btn btn-primary">
+                    <i class="fas fa-sync"></i> Sync with Google Fit
+                </button>
+                <p id="last-sync" class="text-muted"></p>
+            </div>
+
+            <div class="fitness-chart">
+                <canvas id="stepsChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="js/fitness.js"></script>
+</body>
+</html> 
