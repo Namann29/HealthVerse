@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Tracker - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link active">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            <i class="fas fa-cog"></i>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title glow-text">Medicine Tracker</h1>
+                <p class="page-desc">Schedule reminders, track medications, and never miss a dose</p>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search medicines...">
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content-grid">
+                <!-- Medicine Notifications Card -->
+                <div class="notifications-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Today's Medications</h2>
+                        <div class="header-stats">
+                            <span class="success-dot"></span>
+                            <span>3 of 5 medications taken</span>
+                        </div>
+                    </div>
+                    <div class="notifications-table">
+                        <div class="table-header">
+                            <div>MEDICINE</div>
+                            <div>TIME</div>
+                            <div>DOSAGE</div>
+                            <div>STATUS</div>
+                        </div>
+                        <div class="table-body" id="medicine-list">
+                            <!-- Medicines will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Medicine Card -->
+                <div class="add-medicine-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Add New Medicine</h2>
+                    </div>
+                    <form class="medicine-form" id="add-medicine-form">
+                        <div class="form-group">
+                            <label for="medicine-name">Medicine Name</label>
+                            <input type="text" id="medicine-name" name="name" placeholder="Enter medicine name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="medicine-type">Medicine Type</label>
+                                <select id="medicine-type" name="type">
+                                    <option value="pill">Pill</option>
+                                    <option value="liquid">Liquid</option>
+                                    <option value="injection">Injection</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosage">Dosage</label>
+                                <input type="text" id="dosage" name="dosage" placeholder="e.g., 500mg, 1 tablet" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="frequency">Frequency</label>
+                                <select id="frequency" name="frequency" required>
+                                    <option value="daily">Daily</option>
+                                    <option value="twice">Twice Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" name="time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Add any additional notes about the medication"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="add-medicine-btn">
+                            <i class="fas fa-plus"></i>
+                            Add Medicine
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Medicine Statistics -->
+            <div class="medicine-stats card glow-on-hover">
+                <div class="card-header">
+                    <h2>Medication Adherence</h2>
+                </div>
+                <div class="stats-content">
+                    <div class="adherence-chart">
+                        <!-- This would be a chart in a real app -->
+                        <div class="progress-circle" style="--percentage: 85">
+                            <span class="percentage">85%</span>
+                            <span class="label">Adherence</span>
+                        </div>
+                    </div>
+                    <div class="adherence-stats">
+                        <div class="adherence-item">
+                            <h3>This Week</h3>
+                            <p>34 of 35 doses taken</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 97%"></div>
+                            </div>
+                        </div>
+                        <div class="adherence-item">
+                            <h3>This Month</h3>
+                            <p>142 of 155 doses taken</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="adherence-item">
+                            <h3>All Time</h3>
+                            <p>863 of 1017 doses taken</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medication Insights -->
+            <div class="insights-section">
+                <h2 class="section-title">Medication Insights</h2>
+                <p class="section-desc">Personalized information to help you better manage your medications</p>
+                <div class="insights-grid">
+                    <div class="insight-card glow-on-hover">
+                        <div class="insight-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Potential Interactions</h3>
+                        <p>Your current medications do not have any known interactions with each other.</p>
+                        <a href="#" class="insight-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="insight-card glow-on-hover">
+                        <div class="insight-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Food Interactions</h3>
+                        <p>Take your Calcium supplement at least 2 hours apart from your Multivitamin for optimal absorption.</p>
+                        <a href="#" class="insight-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="insight-card glow-on-hover">
+                        <div class="insight-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Optimal Timing</h3>
+                        <p>Consider taking your Vitamin D supplement in the morning with a meal containing healthy fats for better absorption.</p>
+                        <a href="#" class="insight-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/medicine.js"></script>
+</body>
+</html> 

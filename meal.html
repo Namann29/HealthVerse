@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Tracker - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link active">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            <i class="fas fa-cog"></i>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title glow-text">Meal Tracker</h1>
+                <p class="page-desc">Log your meals, track nutrition, and maintain a healthy diet</p>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search meals...">
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content-grid">
+                <!-- Meal List Card -->
+                <div class="meal-list-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Today's Meals</h2>
+                        <div class="header-stats">
+                            <span class="success-dot"></span>
+                            <span>All meals tracked</span>
+                        </div>
+                    </div>
+                    <div class="meal-table">
+                        <div class="table-header">
+                            <div>Meal</div>
+                            <div>Calories</div>
+                            <div>Time</div>
+                            <div>Action</div>
+                        </div>
+                        <div class="table-body" id="meal-list">
+                            <!-- Meals will be dynamically added here -->
+                        </div>
+                        <div class="table-footer">
+                            <div class="total-calories">
+                                <span>Total Calories:</span>
+                                <span id="total-calories">0 kcal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Meal Card -->
+                <div class="add-meal-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Add New Meal</h2>
+                    </div>
+                    <form id="add-meal-form" class="meal-form">
+                        <div class="form-group">
+                            <label for="meal-name">Meal Name</label>
+                            <input type="text" id="meal-name" name="name" placeholder="Enter meal name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calories">Calories</label>
+                            <input type="number" id="calories" name="calories" placeholder="Enter calories" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" name="time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Add any notes about the meal"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="add-meal-btn">
+                            <i class="fas fa-plus"></i>
+                            Add Meal
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Nutrition Summary -->
+            <div class="nutrition-summary card glow-on-hover">
+                <div class="card-header">
+                    <h2>Nutritional Overview</h2>
+                </div>
+                <div class="nutrition-content">
+                    <div class="nutrition-chart">
+                        <!-- This would be a chart in a real app -->
+                        <div class="placeholder-chart">
+                            <div class="chart-segment carbs" style="--percent: 45%">
+                                <span>Carbs</span>
+                            </div>
+                            <div class="chart-segment protein" style="--percent: 30%">
+                                <span>Protein</span>
+                            </div>
+                            <div class="chart-segment fat" style="--percent: 25%">
+                                <span>Fat</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nutrition-stats">
+                        <div class="stat-item">
+                            <h3>Carbohydrates</h3>
+                            <p>231g</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Protein</h3>
+                            <p>154g</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Fat</h3>
+                            <p>57g</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Sugar</h3>
+                            <p>42g</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Plans -->
+            <div class="meal-plans-section">
+                <h2 class="section-title">Recommended Meal Plans</h2>
+                <p class="section-desc">Explore these personalized meal plans based on your nutrition goals</p>
+                <div class="meal-plans-grid">
+                    <a href="weight-loss-plan.html" class="meal-plan-card glow-on-hover">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=600&auto=format&fit=crop" alt="Weight Loss Meal" class="meal-plan-img">
+                        <div class="meal-plan-header">
+                            <div class="meal-plan-icon">
+                                <i class="fas fa-weight"></i>
+                            </div>
+                            <h3>Weight Loss Plan</h3>
+                        </div>
+                        <p class="meal-plan-desc">A balanced meal plan designed to help you lose weight in a healthy and sustainable way.</p>
+                        <div class="meal-plan-features">
+                            <span><i class="fas fa-fire"></i> 1500-1800 kcal/day</span>
+                            <span><i class="fas fa-clock"></i> 6 weeks program</span>
+                        </div>
+                    </a>
+                    
+                    <a href="muscle-gain-plan.html" class="meal-plan-card glow-on-hover">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" alt="Muscle Gain Meal" class="meal-plan-img">
+                        <div class="meal-plan-header">
+                            <div class="meal-plan-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3>Muscle Gain Plan</h3>
+                        </div>
+                        <p class="meal-plan-desc">High-protein meal plan optimized for muscle growth and strength training.</p>
+                        <div class="meal-plan-features">
+                            <span><i class="fas fa-fire"></i> 2500-3000 kcal/day</span>
+                            <span><i class="fas fa-clock"></i> 8 weeks program</span>
+                        </div>
+                    </a>
+                    
+                    <a href="plant-based-plan.html" class="meal-plan-card glow-on-hover">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop" alt="Plant Based Meal" class="meal-plan-img">
+                        <div class="meal-plan-header">
+                            <div class="meal-plan-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Plant-Based Plan</h3>
+                        </div>
+                        <p class="meal-plan-desc">Nutrient-rich vegan meal plan focusing on whole foods and plant proteins.</p>
+                        <div class="meal-plan-features">
+                            <span><i class="fas fa-fire"></i> 2000-2200 kcal/day</span>
+                            <span><i class="fas fa-clock"></i> 4 weeks program</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/meal.js"></script>
+</body>
+</html> 

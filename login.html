@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar-logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        .navbar-logo span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="auth-section">
+            <h1 class="auth-welcome-heading">Welcome back to HealthVerse</h1>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Log In</h1>
+                    <p>Enter your credentials to access your account</p>
+                </div>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Log In
+                    </button>
+                    <div id="auth-error" class="auth-error"></div>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+        import { loginUser } from './js/firebase.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const authError = document.getElementById('auth-error');
+
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                authError.textContent = '';
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+
+                // Basic validation
+                if (!email || !password) {
+                    authError.textContent = 'Both email and password are required';
+                    return;
+                }
+
+                try {
+                    // Show loading state
+                    const submitButton = loginForm.querySelector('button[type="submit"]');
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging In...';
+                    submitButton.disabled = true;
+
+                    // Login with Firebase
+                    const result = await loginUser(email, password);
+
+                    if (result.success) {
+                        // Redirect to profile page immediately after successful login
+                        window.location.href = 'profile.html';
+                    } else {
+                        throw new Error(result.error || 'Invalid email or password');
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    authError.textContent = error.message;
+                    // Reset button
+                    const submitButton = loginForm.querySelector('button[type="submit"]');
+                    submitButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Log In';
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

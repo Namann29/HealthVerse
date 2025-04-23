@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthVerse - Your Health Companion</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase Connection Check -->
+    <script type="module">
+        import { testFirebaseConnection } from './js/firebase.js';
+        
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const result = await testFirebaseConnection();
+                if (!result.success) {
+                    showFirebaseError(result.error);
+                }
+            } catch (error) {
+                showFirebaseError(error.message);
+            }
+        });
+        
+        function showFirebaseError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'firebase-error';
+            errorDiv.innerHTML = `
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <h3>Firebase Connection Error</h3>
+                        <p>${message}</p>
+                        <p>Please check your internet connection and Firebase configuration.</p>
+                    </div>
+                    <button class="close-btn"><i class="fas fa-times"></i></button>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            
+            errorDiv.querySelector('.close-btn').addEventListener('click', () => {
+                errorDiv.remove();
+            });
+        }
+    </script>
+    <style>
+        .firebase-error {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 9999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 400px;
+        }
+        .firebase-error .error-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .firebase-error i.fa-exclamation-triangle {
+            font-size: 24px;
+            margin-top: 4px;
+        }
+        .firebase-error h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+        .firebase-error p {
+            margin: 0 0 6px 0;
+            font-size: 14px;
+        }
+        .firebase-error .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-logo">
+            <img src="assets/background.png" alt="HealthVerse">
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <a href="login.html" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="assets/video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="glow-text elegant">Welcome to HealthVerse</h1>
+            <p>Your personal health companion for a better lifestyle</p>
+            <div class="hero-buttons">
+                <button class="btn btn-get-started">Get Started <i class="fas fa-arrow-right"></i></button>
+                <button class="btn btn-outlined">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="container">
+                <h2 class="section-title">Your Journey to Better Health</h2>
+                <p class="section-desc">At HealthVerse, we believe everyone deserves to live their healthiest life. Our comprehensive platform brings together all the tools you need to track, improve, and maintain your health in one seamless experience.</p>
+                <div class="intro-cards">
+                    <div class="intro-card glow-effect">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Track Progress</h3>
+                        <p>Monitor your health metrics and see your improvements over time</p>
+                    </div>
+                    <div class="intro-card glow-effect">
+                        <i class="fas fa-bell"></i>
+                        <h3>Smart Reminders</h3>
+                        <p>Never miss important medications or workout sessions</p>
+                    </div>
+                    <div class="intro-card glow-effect">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Insights</h3>
+                        <p>Receive personalized recommendations based on your health data</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="feature-section">
+            <div class="container">
+                <h2 class="section-title">Comprehensive Features</h2>
+                <p class="section-desc">Our platform offers a wide range of features to help you manage all aspects of your health</p>
+                <div class="feature-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Meal Tracking</h3>
+                        <p>Track your daily meals and maintain a healthy diet. Log calories, nutrients, and create meal plans that work for your lifestyle.</p>
+                        <a href="meal.html" class="feature-link btn-text">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h3>Medicine Reminders</h3>
+                        <p>Never miss your medication with smart reminders. Schedule your medications, receive timely notifications, and track adherence.</p>
+                        <a href="medicine.html" class="feature-link btn-text">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Workout Plans</h3>
+                        <p>Customized workout plans for your fitness goals. Access exercises with proper form guides, track progress, and stay motivated.</p>
+                        <a href="workout.html" class="feature-link btn-text">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">Your Health Metrics</h2>
+                <p class="section-desc">Monitor key health indicators to stay informed about your progress</p>
+                <div class="stats-grid">
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Calories Burnt</h3>
+                            <p>401</p>
+                            <span class="trend positive">+55%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">image.png
+                            <h3>Move Minutes</h3>
+                            <p>263</p>
+                            <span class="trend positive">+3%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Heart Points</h3>
+                            <p>2</p>
+                            <span class="trend negative">-2%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Weekly Step Count</h3>
+                            <p>15,384</p>
+                            <span class="trend positive">+5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="container">
+                <h2 class="section-title">Your Progress</h2>
+                <p class="section-desc">Track your journey towards your health goals</p>
+                <div class="chart-container">
+                    <div class="progress-details">
+                        <div class="progress-stat">
+                            <h3>Weekly Goal</h3>
+                            <p>75% completed</p>
+                        </div>
+                        <div class="progress-stat">
+                            <h3>Target Date</h3>
+                            <p>December 15, 2023</p>
+                        </div>
+                        <div class="progress-stat">
+                            <h3>Streak</h3>
+                            <p>8 days</p>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <p class="progress-info">Keep going! You're on track to reach your goal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">What Our Users Say</h2>
+                <p class="section-desc">Discover how HealthVerse has helped people transform their lives</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="User Avatar">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"HealthVerse has completely changed how I manage my health. The meal tracking feature has helped me lose 15 pounds in just 3 months!"</p>
+                            <div class="testimonial-author">
+                                <h4>Sarah Johnson</h4>
+                                <p>Member since 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="User Avatar">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"As someone with multiple medications to take daily, the medicine reminder feature has been a lifesaver. I haven't missed a dose since I started using HealthVerse."</p>
+                            <div class="testimonial-author">
+                                <h4>Michael Chen</h4>
+                                <p>Member since 2021</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop" alt="User Avatar">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The workout plans are incredible. I've been able to build a consistent fitness routine for the first time in my life, and I can see the results!"</p>
+                            <div class="testimonial-author">
+                                <h4>Emily Rodriguez</h4>
+                                <p>Member since 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Start Your Health Journey Today</h2>
+                    <p>Join thousands of users who have transformed their lives with HealthVerse</p>
+                    <a href="signup.html" class="btn btn-get-started btn-large">Create Your Account <i class="fas fa-user-plus"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/background.png" alt="HealthVerse">
+                </div>
+                <p>Your complete health management platform</p>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Features</h3>
+                        <ul>
+                            <li><a href="meal.html">Meal Tracking</a></li>
+                            <li><a href="medicine.html">Medicine Reminders</a></li>
+                            <li><a href="workout.html">Workout Plans</a></li>
+                            <li><a href="#">Health Analytics</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 HealthVerse. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top btn btn-floating">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script type="module" src="js/app.js"></script>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="healthio-toggle">
+        <img src="assets/images/heartbeat.svg" alt="Open Chat" class="toggle-icon">
+    </button>
+
+    <!-- Chatbot Interface -->
+    <div class="healthio-chatbot">
+        <div class="chatbot-header">
+            <img src="assets/images/heartbeat.svg" alt="Healthio" class="header-icon">
+            <h3>Healthio</h3>
+            <button class="chatbot-close">&times;</button>
+        </div>
+        <div class="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" class="chatbot-text-input" placeholder="Ask me anything about fitness...">
+            <button class="chatbot-send">Send</button>
+        </div>
+    </div>
+
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

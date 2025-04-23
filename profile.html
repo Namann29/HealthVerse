@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link active">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            <i class="fas fa-cog"></i>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title glow-text">Your Profile</h1>
+                <p class="page-desc">Manage your personal information and track your health journey</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="profile-content">
+                <div class="profile-header card glow-on-hover">
+                    <div class="profile-cover">
+                        <img src="https://images.unsplash.com/photo-1530629013299-6cb10d168419?q=80&w=1200&auto=format&fit=crop" alt="Cover Image">
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=300&auto=format&fit=crop" alt="Profile Picture">
+                            <button class="avatar-edit">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-details">
+                            <h1 id="profile-display-name">John Doe</h1>
+                            <p id="profile-bio">Health Enthusiast</p>
+                            <div class="profile-badges">
+                                <span class="badge">
+                                    <i class="fas fa-medal"></i> 30-Day Streak
+                                </span>
+                                <span class="badge">
+                                    <i class="fas fa-award"></i> Top Performer
+                                </span>
+                                <span class="badge">
+                                    <i class="fas fa-star"></i> Premium Member
+                                </span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-edit">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                            <button class="btn-share">
+                                <i class="fas fa-share-alt"></i>
+                                Share Progress
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-stats-grid">
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Calories</h3>
+                            <p>12,500 kcal</p>
+                            <small>Last 30 days</small>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Workout Time</h3>
+                            <p>25h 30m</p>
+                            <small>Last 30 days</small>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Workouts</h3>
+                            <p>35 sessions</p>
+                            <small>Last 30 days</small>
+                        </div>
+                    </div>
+                    <div class="stat-card glow-on-hover">
+                        <div class="stat-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Meals Tracked</h3>
+                            <p>120 meals</p>
+                            <small>Last 30 days</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="health-progress-section">
+                    <h2 class="section-title">Health Progress</h2>
+                    <p class="section-desc">Track changes in your key health metrics over time</p>
+                    <div class="health-metric-cards">
+                        <div class="health-metric-card glow-on-hover">
+                            <div class="metric-header">
+                                <h3>Weight Tracking</h3>
+                                <span class="trend positive">
+                                    <i class="fas fa-arrow-down"></i> 3.5 kg
+                                </span>
+                            </div>
+                            <div class="metric-chart">
+                                <!-- This would be a chart in a real app -->
+                                <div class="line-chart">
+                                    <div class="chart-line">
+                                        <span class="chart-point" style="--x: 10%; --y: 80%"></span>
+                                        <span class="chart-point" style="--x: 25%; --y: 70%"></span>
+                                        <span class="chart-point" style="--x: 40%; --y: 75%"></span>
+                                        <span class="chart-point" style="--x: 55%; --y: 60%"></span>
+                                        <span class="chart-point" style="--x: 70%; --y: 50%"></span>
+                                        <span class="chart-point" style="--x: 85%; --y: 45%"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="metric-details">
+                                <div class="metric-value">
+                                    <span>Starting</span>
+                                    <span>78.5 kg</span>
+                                </div>
+                                <div class="metric-value current">
+                                    <span>Current</span>
+                                    <span>75 kg</span>
+                                </div>
+                                <div class="metric-value">
+                                    <span>Goal</span>
+                                    <span>70 kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="health-metric-card glow-on-hover">
+                            <div class="metric-header">
+                                <h3>BMI Tracking</h3>
+                                <span class="trend positive">
+                                    <i class="fas fa-arrow-down"></i> 1.2
+                                </span>
+                            </div>
+                            <div class="metric-chart">
+                                <!-- This would be a chart in a real app -->
+                                <div class="line-chart">
+                                    <div class="chart-line">
+                                        <span class="chart-point" style="--x: 10%; --y: 75%"></span>
+                                        <span class="chart-point" style="--x: 25%; --y: 72%"></span>
+                                        <span class="chart-point" style="--x: 40%; --y: 68%"></span>
+                                        <span class="chart-point" style="--x: 55%; --y: 65%"></span>
+                                        <span class="chart-point" style="--x: 70%; --y: 62%"></span>
+                                        <span class="chart-point" style="--x: 85%; --y: 58%"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="metric-details">
+                                <div class="metric-value">
+                                    <span>Starting</span>
+                                    <span>24.2</span>
+                                </div>
+                                <div class="metric-value current">
+                                    <span>Current</span>
+                                    <span>23.0</span>
+                                </div>
+                                <div class="metric-value">
+                                    <span>Goal</span>
+                                    <span>22.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-details-grid">
+                    <div class="profile-card card glow-on-hover">
+                        <h2>Personal Information</h2>
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="john.doe@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" value="+1 234 567 8900">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" value="New York, USA">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthdate">Date of Birth</label>
+                                <input type="date" id="birthdate" value="1990-05-15">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender">
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not">Prefer Not to Say</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-save">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="profile-card card glow-on-hover">
+                        <h2>Health Information</h2>
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="height">Height (cm)</label>
+                                    <input type="number" id="height" value="180">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg)</label>
+                                    <input type="number" id="weight" value="75">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="blood-type">Blood Type</label>
+                                    <select id="blood-type">
+                                        <option value="a+">A+</option>
+                                        <option value="a-">A-</option>
+                                        <option value="b+">B+</option>
+                                        <option value="b-">B-</option>
+                                        <option value="ab+">AB+</option>
+                                        <option value="ab-">AB-</option>
+                                        <option value="o+" selected>O+</option>
+                                        <option value="o-">O-</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="allergies">Allergies</label>
+                                    <input type="text" id="allergies" value="None">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="medical-conditions">Medical Conditions</label>
+                                <textarea id="medical-conditions">None</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="medications">Current Medications</label>
+                                <textarea id="medications">Vitamin D, Multivitamin</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Fitness Goals</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="goals" value="weight-loss" checked>
+                                        <span>Weight Loss</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="goals" value="muscle-gain">
+                                        <span>Muscle Gain</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="goals" value="endurance">
+                                        <span>Endurance</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="goals" value="flexibility" checked>
+                                        <span>Flexibility</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-save">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ADD separate script imports -->
+    <script type="module" src="js/app.js"></script> <!-- Assuming app.js is needed globally -->
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/profile.js"></script> <!-- This loads the profile data logic -->
+</body>
+</html> 

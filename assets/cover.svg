@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="200" viewBox="0 0 1200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="200" fill="#4F46E5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 200L50 180C100 160 200 120 300 100C400 80 500 80 600 100C700 120 800 160 900 160C1000 160 1100 120 1150 100L1200 80V200H1150C1100 200 1000 200 900 200C800 200 700 200 600 200C500 200 400 200 300 200C200 200 100 200 50 200H0Z" fill="#6366F1" fill-opacity="0.5"/>
+</svg> 

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link active">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            <i class="fas fa-cog"></i>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title glow-text">Workout Tracker</h1>
+                <p class="page-desc">Track your fitness activities, monitor progress, and achieve your goals</p>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search workouts...">
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content-grid">
+                <!-- Workout List Card -->
+                <div class="workout-list-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Today's Workouts</h2>
+                        <div class="header-stats">
+                            <span class="status-indicator"></span>
+                            <span>0 of 0 workouts completed</span>
+                        </div>
+                    </div>
+                    <div class="workout-table">
+                        <div class="table-header">
+                            <div>WORKOUT</div>
+                            <div>DURATION</div>
+                            <div>CALORIES</div>
+                            <div>STATUS</div>
+                            <div>ACTION</div>
+                        </div>
+                        <div class="table-body" id="workout-list">
+                            <!-- Workouts will be dynamically added here -->
+                        </div>
+                        <div class="table-footer">
+                            <div class="total-stats">
+                                <span>Total calories burned:</span>
+                                <span id="total-calories">0 kcal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Workout Card -->
+                <div class="add-workout-card card glow-on-hover">
+                    <div class="card-header">
+                        <h2>Add New Workout</h2>
+                    </div>
+                    <form class="workout-form" id="add-workout-form">
+                        <div class="form-group">
+                            <label for="workout-name">Workout Name</label>
+                            <input type="text" id="workout-name" name="name" placeholder="Enter workout name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workout-type">Workout Type</label>
+                                <select id="workout-type" name="type" required>
+                                    <option value="cardio">Cardio</option>
+                                    <option value="strength">Strength Training</option>
+                                    <option value="flexibility">Flexibility</option>
+                                    <option value="hiit">HIIT</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="intensity">Intensity</label>
+                                <select id="intensity" name="intensity" required>
+                                    <option value="low">Low</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="high">High</option>
+                                    <option value="very-high">Very High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="duration">Duration (minutes)</label>
+                                <input type="number" id="duration" name="duration" placeholder="Enter duration" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="calories">Calories Burned</label>
+                                <input type="number" id="calories" name="calories" placeholder="Enter calories" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" name="time">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Add any notes about the workout"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="add-workout-btn">
+                            <i class="fas fa-plus"></i>
+                            Add Workout
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Weekly Performance Card -->
+            <div class="workout-stats-card card glow-on-hover">
+                <div class="card-header">
+                    <h2>Weekly Performance</h2>
+                    <div class="header-actions">
+                        <button class="btn-filter">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                        <button class="btn-download">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <div class="weekly-chart">
+                    <!-- This would be a chart in a real app -->
+                    <div class="bar-chart">
+                        <div class="chart-columns">
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 60%"></div>
+                                    <div class="bar strength" style="height: 25%"></div>
+                                </div>
+                                <div class="column-label">Mon</div>
+                            </div>
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 30%"></div>
+                                    <div class="bar strength" style="height: 45%"></div>
+                                </div>
+                                <div class="column-label">Tue</div>
+                            </div>
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 0%"></div>
+                                    <div class="bar strength" style="height: 70%"></div>
+                                </div>
+                                <div class="column-label">Wed</div>
+                            </div>
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 45%"></div>
+                                    <div class="bar strength" style="height: 0%"></div>
+                                </div>
+                                <div class="column-label">Thu</div>
+                            </div>
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 20%"></div>
+                                    <div class="bar strength" style="height: 50%"></div>
+                                </div>
+                                <div class="column-label">Fri</div>
+                            </div>
+                            <div class="chart-column">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 80%"></div>
+                                    <div class="bar strength" style="height: 0%"></div>
+                                </div>
+                                <div class="column-label">Sat</div>
+                            </div>
+                            <div class="chart-column active">
+                                <div class="bar-stack">
+                                    <div class="bar cardio" style="height: 30%"></div>
+                                    <div class="bar strength" style="height: 40%"></div>
+                                </div>
+                                <div class="column-label">Sun</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color cardio"></span>
+                            <span class="legend-label">Cardio</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color strength"></span>
+                            <span class="legend-label">Strength</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Calories</h3>
+                            <p>2,500 kcal</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Time</h3>
+                            <p>5h 30m</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Workouts</h3>
+                            <p>7 sessions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Programs -->
+            <div class="workout-programs-section">
+                <h2 class="section-title">Recommended Workout Programs</h2>
+                <p class="section-desc">Discover personalized workout plans based on your goals and fitness level</p>
+                <div class="programs-grid">
+                    <div class="program-card glow-on-hover">
+                        <div class="program-header">
+                            <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?q=80&w=600&auto=format&fit=crop" alt="Weight Loss Program">
+                            <div class="program-level">Beginner</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Weight Loss Program</h3>
+                            <p>A progressive 8-week program designed to burn fat through a mix of cardio and strength training.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> 3-4 workouts per week</li>
+                                <li><i class="fas fa-check"></i> 30-45 minutes per session</li>
+                                <li><i class="fas fa-check"></i> Equipment: Minimal</li>
+                            </ul>
+                            <button class="btn btn-primary">View Program</button>
+                        </div>
+                    </div>
+                    <div class="program-card glow-on-hover">
+                        <div class="program-header">
+                            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop" alt="Muscle Building Program">
+                            <div class="program-level">Intermediate</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Muscle Building</h3>
+                            <p>Build lean muscle mass with this 12-week progressive overload resistance training program.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> 4-5 workouts per week</li>
+                                <li><i class="fas fa-check"></i> 45-60 minutes per session</li>
+                                <li><i class="fas fa-check"></i> Equipment: Full gym recommended</li>
+                            </ul>
+                            <button class="btn btn-primary">View Program</button>
+                        </div>
+                    </div>
+                    <div class="program-card glow-on-hover">
+                        <div class="program-header">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop" alt="Flexibility Program">
+                            <div class="program-level">All Levels</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Flexibility & Mobility</h3>
+                            <p>Improve your range of motion, reduce pain, and enhance performance with this mobility program.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> 5-7 sessions per week</li>
+                                <li><i class="fas fa-check"></i> 15-30 minutes per session</li>
+                                <li><i class="fas fa-check"></i> Equipment: Yoga mat, foam roller</li>
+                            </ul>
+                            <button class="btn btn-primary">View Program</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="workoutTimerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Workout Timer</h2>
+            <div id="activeWorkout">
+                <h3 id="activeWorkoutName"></h3>
+                <p id="workoutTimer">00:00:00</p>
+                <p>Estimated calories: <span id="caloriesBurned">0</span></p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelWorkoutBtn" class="btn btn-outlined">Cancel</button>
+                <button id="completeWorkoutBtn" class="btn btn-primary">Complete Workout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/workout.js"></script>
+</body>
+</html> 

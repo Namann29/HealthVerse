@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health News - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="meal.html" class="nav-link">
+                <i class="fas fa-utensils"></i>
+                <span>Meal Tracker</span>
+            </a>
+            <a href="medicine.html" class="nav-link">
+                <i class="fas fa-pills"></i>
+                <span>Medicine Tracker</span>
+            </a>
+            <a href="workout.html" class="nav-link">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout Tracker</span>
+            </a>
+            <a href="news.html" class="nav-link active">
+                <i class="fas fa-newspaper"></i>
+                <span>Health News</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            <i class="fas fa-cog"></i>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title glow-text">Health News</h1>
+                <p class="page-desc">Stay informed with the latest health insights, research, and trends</p>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="news-search" placeholder="Search health topics...">
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- News Categories -->
+            <div class="news-categories">
+                <button class="category-pill active" data-category="all">All News</button>
+                <button class="category-pill" data-category="nutrition">Nutrition</button>
+                <button class="category-pill" data-category="fitness">Fitness</button>
+                <button class="category-pill" data-category="wellness">Wellness</button>
+                <button class="category-pill" data-category="medical">Medical</button>
+                <button class="category-pill" data-category="research">Research</button>
+            </div>
+
+            <!-- Featured Article -->
+            <div class="featured-article card glow-on-hover">
+                <div class="featured-image">
+                    <img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?q=80&w=800&auto=format&fit=crop" alt="Featured Article">
+                    <div class="featured-tag">Featured</div>
+                </div>
+                <div class="featured-content">
+                    <div class="article-category">Wellness</div>
+                    <h2 class="featured-title">The Latest Research on How Exercise Affects Mental Health</h2>
+                    <p class="featured-excerpt">New studies reveal how regular physical activity can significantly improve cognitive function and reduce anxiety and depression symptoms.</p>
+                    <div class="article-meta">
+                        <span class="article-date"><i class="far fa-calendar-alt"></i> Today</span>
+                        <span class="article-read-time"><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                    <a href="#" class="btn-read-more">Read Full Article</a>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading the latest health news...</p>
+            </div>
+
+            <div class="news-grid" id="news-container">
+                <!-- News items will be dynamically populated here -->
+            </div>
+
+            <!-- News Template for JavaScript to use -->
+            <template id="news-template">
+                <div class="news-card glow-on-hover">
+                    <div class="news-image">
+                        <img src="" alt="Article Image">
+                    </div>
+                    <div class="news-content">
+                        <div class="article-category"></div>
+                        <h3 class="news-title"></h3>
+                        <p class="news-excerpt"></p>
+                        <div class="article-meta">
+                            <span class="article-source"><i class="fas fa-globe"></i> <span class="source-name"></span></span>
+                            <span class="article-date"><i class="far fa-calendar-alt"></i> <span class="date-text"></span></span>
+                        </div>
+                        <a href="#" class="btn-read-more" target="_blank">Read Full Article</a>
+                    </div>
+                </div>
+            </template>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="no-results-message" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No articles found</h3>
+                <p>Try adjusting your search or category filters</p>
+                <button id="reset-search" class="btn-secondary">Reset Search</button>
+            </div>
+
+            <!-- Health Tips Section -->
+            <section class="health-tips-section">
+                <h2 class="section-title">Health Tips</h2>
+                <p class="section-desc">Quick insights to boost your wellbeing</p>
+                <div class="tips-grid">
+                    <div class="tip-card glow-on-hover">
+                        <div class="tip-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3>Nutrition Tip</h3>
+                        <p>Eat a rainbow of fruits and vegetables daily to ensure you get a variety of nutrients and antioxidants.</p>
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=400&auto=format&fit=crop" alt="Colorful vegetables" class="tip-image">
+                    </div>
+                    <div class="tip-card glow-on-hover">
+                        <div class="tip-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3>Sleep Tip</h3>
+                        <p>Aim for 7-9 hours of quality sleep each night and maintain a consistent sleep schedule for optimal health.</p>
+                        <img src="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?q=80&w=400&auto=format&fit=crop" alt="Peaceful bedroom" class="tip-image">
+                    </div>
+                    <div class="tip-card glow-on-hover">
+                        <div class="tip-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Mental Health Tip</h3>
+                        <p>Practice mindfulness for just 10 minutes daily to reduce stress and improve overall mental wellbeing.</p>
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400&auto=format&fit=crop" alt="Meditation pose" class="tip-image">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Subscription -->
+            <section class="newsletter-section card glow-on-hover">
+                <div class="newsletter-content">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to our weekly health newsletter to receive the latest news, research, and tips directly to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-subscribe-link">
+                            <i class="fas fa-paper-plane"></i>
+                            Subscribe
+                        </button>
+                    </form>
+                    <p class="newsletter-note">We respect your privacy and will never share your information.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/news.js"></script>
+</body>
+</html> 

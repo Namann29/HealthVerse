@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - HealthVerse</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/images/logo.svg" alt="HealthVerse Logo">
+            <span>HealthVerse</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="auth-section">
+            <h1 class="auth-welcome-heading">Welcome to HealthVerse</h1>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Create Account</h1>
+                    <p>Join HealthVerse to start your health journey</p>
+                </div>
+                <form id="signup-form" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                        <small>Password must be at least 8 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                    <div id="auth-error" class="auth-error"></div>
+                </form>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Log in</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+        import { registerUser } from './js/firebase.js';
+        import { handleAuthRoute } from './js/auth.js';
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Check if user is already logged in
+            await handleAuthRoute();
+            console.log('Auth route check complete on signup page.');
+
+            const signupForm = document.getElementById('signup-form');
+            const authError = document.getElementById('auth-error');
+
+            signupForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                authError.textContent = '';
+                console.log('Signup form submitted.');
+
+                const firstName = document.getElementById('first-name').value.trim();
+                const lastName = document.getElementById('last-name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const termsChecked = document.getElementById('terms').checked;
+
+                // Basic validation
+                if (!firstName || !lastName || !email || !password) {
+                    authError.textContent = 'All fields are required';
+                    return;
+                }
+
+                if (password.length < 8) {
+                    authError.textContent = 'Password must be at least 8 characters';
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    authError.textContent = 'Passwords do not match';
+                    return;
+                }
+
+                if (!termsChecked) {
+                    authError.textContent = 'You must agree to the Terms of Service';
+                    console.error('Validation failed: Terms not checked.');
+                    return;
+                }
+                console.log('Validation passed.');
+
+                try {
+                    // Show loading state
+                    const submitButton = signupForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                    submitButton.disabled = true;
+
+                    // Register the user with Firebase
+                    const userData = {
+                        firstName,
+                        lastName,
+                        displayName: `${firstName} ${lastName}`,
+                        createdAt: new Date().toISOString()
+                    };
+
+                    console.log('Attempting to register user:', email);
+                    const result = await registerUser(email, password, userData);
+                    console.log('registerUser result:', result);
+
+                    if (result.success) {
+                        console.log('Registration successful in signup.html, attempting redirect to profile.html...');
+                        // Wait a brief moment for auth state to potentially propagate
+                        // setTimeout(() => {
+                        //     window.location.href = 'profile.html';
+                        // }, 100); // Delay might help, but not ideal
+                        window.location.href = 'profile.html';
+                    } else {
+                        console.error('Registration failed:', result.error);
+                        authError.textContent = result.error || 'Failed to create account';
+                        submitButton.innerHTML = originalButtonText;
+                        submitButton.disabled = false;
+                    }
+                } catch (error) {
+                    console.error('Signup error:', error);
+                    authError.textContent = error.message || 'An unexpected error occurred';
+                    const submitButton = signupForm.querySelector('button[type="submit"]');
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
