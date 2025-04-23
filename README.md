@@ -53,20 +53,7 @@ healthverse/
 ├── package.json    # Project dependencies
 └── README.md       # Project documentation
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
-Your Name - [@yourusername](https://twitter.com/yourusername)
-Project Link: [https://github.com/yourusername/healthverse](https://github.com/yourusername/healthverse)
+Naman Jiwnani - [Email](mailto:namanjiwnani25@gmail.com)
+Project Link: [https://github.com/Namann29/healthverse](https://github.com/Namann29/healthverse)
