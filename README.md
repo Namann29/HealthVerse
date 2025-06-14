@@ -19,29 +19,6 @@ HealthVerse is a comprehensive health and wellness tracking platform that helps 
 - Icons: Font Awesome
 - Fonts: Inter (Google Fonts)
 
-## Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/healthverse.git
-   cd healthverse
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up Firebase:
-   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
-   - Enable Authentication and Firestore
-   - Copy your Firebase config to `js/firebase.js`
-
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-
 ## Project Structure
 
 ```
